@@ -2,19 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/CartSlice";
-
+import { getProducts } from "../store/ProductSlice";
+// const dispatch=useDispatch()
 const Products = () => {
   const [products, setProducts] = useState([]);
   const dispatch=useDispatch()
 
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await axios.get("https://fakestoreapi.com/products");
-      console.log(res.data);
-      setProducts(res.data);
-    };
-    fetchProducts();
+    dispatch(getProducts())
+    // const fetchProducts = async () => {
+    //   const res = await axios.get("https://fakestoreapi.com/products");
+    //   console.log(res.data);
+    //   setProducts(res.data);
+    // };
+    // fetchProducts();
   }, []);
  const handleAdd=(product)=>{
      //add the product to the state

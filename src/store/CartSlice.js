@@ -10,6 +10,9 @@ const cartSlice=createSlice({
 
         },
         removeFromCart(state,action){
+            return state.filter((item)=>{
+                return item.id!==action.payload.id
+            })
 
         }
     }     
