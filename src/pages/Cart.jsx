@@ -1,31 +1,38 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../store/CartSlice";
-function Cart() {
-  const dispatch=useDispatch()
-  const cartData=useSelector((state)=>{
-    return state.cart
-  })
-  const handleRemove=(product)=>{
-    dispatch(removeFromCart(product))
+import React from 'react'
+
+import {useSelector , useDispatch} from 'react-redux'
+
+import { remove } from '../store/CartSlice.js'
+
+const Cart = () => {
+
+  const items = useSelector((state)=> state.cart)
+  const dispatch = useDispatch()
+
+
+  const handleRemove =(itemId)=>{
+       dispatch(remove(itemId))
   }
+
 
   return (
     <div>
-      <h2>Cart Products</h2>
+        <div className='cartWrapper'>
 
-      {cartData.map((product) => {
-        return (
-          <div key={product.id} className="cartCard">
-            <img src={product.image} />
-            <h5>{product.title}</h5>
-            <h5>{product.price}</h5>
-            <button onClick={()=>handleRemove(product)} className="btn">Remove</button>
-          </div>
-        );
-      })}
+          {
+            items.map((item)=>(
+              <div className='cartCard'> 
+                 <img src={item.image}></img>
+                 <h5>{item.title}</h5>
+                 <h5>Price : ${item.price} </h5>
+
+                 <button className='remove-btn' onClick={()=> handleRemove(item.id)}>Remove Item</button>
+              </div>
+            ))
+          }
+        </div>
     </div>
-  );
+  )
 }
 
-export default Cart;
+export default Cart
