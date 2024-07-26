@@ -37,7 +37,7 @@ console.log(products)
 
   if(status === STATUSES.LOADING){
 
-return <h2>Loading</h2>
+return <h2>Loading....</h2>
   }
 
   if(status === STATUSES.ERROR){
